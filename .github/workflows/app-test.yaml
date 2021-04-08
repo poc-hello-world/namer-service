@@ -1,0 +1,60 @@
+name: App / Test
+
+on:
+  push:
+    paths:
+      - '.github/workflows/**'
+      - '**.go'
+      - go.mod
+      - go.sum
+      - .dockerignore
+      - Dockerfile
+
+jobs:
+  App:
+    name: Go tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v2
+
+      - name: Set up Go 1.15
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.15'
+
+      - name: Install dependencies
+        run: |
+          go mod download
+          go mod verify
+      - name: Run tests
+        run: |
+          go test -v
+
+  Lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v2
+
+      - name: Run GolangCI-Lint
+        uses: reviewdog/action-golangci-lint@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+
+  Dockerfile:
+    name: Dockerfile linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v2
+
+      - name: Run hadolint
+        uses: reviewdog/action-hadolint@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
