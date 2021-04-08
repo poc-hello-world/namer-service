@@ -25,7 +25,7 @@ func TestAliveHandler(t *testing.T) {
 	}
 
 	want := statusResponse{
-		Status: "Greeter service is alive",
+		Status: "Namer service is alive",
 	}
 
 	got := statusResponse{}
@@ -36,18 +36,18 @@ func TestAliveHandler(t *testing.T) {
 
 	// if expected.Status != response.Status {
 	if diff := cmp.Diff(want, got); diff != "" {
-		t.Errorf("readyHandler mismatch (-want +got):\n%s", diff)
+		t.Errorf("healthyHandler mismatch (-want +got):\n%s", diff)
 	}
 }
 
 func TestHealthyHandler(t *testing.T) {
-	req, err := http.NewRequest("GET", "/status/ready", nil)
+	req, err := http.NewRequest("GET", "/status/heathy", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(ReadyHandler)
+	handler := http.HandlerFunc(HealthyHandler)
 
 	handler.ServeHTTP(rr, req)
 
@@ -57,7 +57,7 @@ func TestHealthyHandler(t *testing.T) {
 	}
 
 	want := statusResponse{
-		Status: "Greeter service is healthy",
+		Status: "Namer service is healthy",
 	}
 
 	got := statusResponse{}
@@ -68,6 +68,6 @@ func TestHealthyHandler(t *testing.T) {
 
 	// if expected.Status != response.Status {
 	if diff := cmp.Diff(want, got); diff != "" {
-		t.Errorf("readyHandler mismatch (-want +got):\n%s", diff)
+		t.Errorf("healthyHandler mismatch (-want +got):\n%s", diff)
 	}
 }

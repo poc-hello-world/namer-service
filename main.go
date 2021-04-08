@@ -34,7 +34,7 @@ func main() {
 
 	globalmux.HandleFunc("/", NameHandler)
 	globalmux.HandleFunc("/status/alive", AliveHandler)
-	globalmux.HandleFunc("/status/ready", ReadyHandler)
+	globalmux.HandleFunc("/status/ready", HealthyHandler)
 
 	log.Fatal(http.ListenAndServe(":5003", setServiceHeader(globalmux)))
 }

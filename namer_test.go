@@ -36,6 +36,6 @@ func TestNamerHandler(t *testing.T) {
 
 	// if expected.Status != response.Status {
 	if diff := cmp.Diff(want, got); diff != "" {
-		t.Errorf("readyHandler mismatch (-want +got):\n%s", diff)
+		t.Errorf("healthyHandler mismatch (-want +got):\n%s", diff)
 	}
 }

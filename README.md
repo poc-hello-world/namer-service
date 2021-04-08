@@ -26,6 +26,97 @@ For more complex demos see:
 - Istio's [BookInfo](https://istio.io/docs/examples/bookinfo/)
 - Kubernetes' [Guestbook](https://kubernetes.io/docs/tutorials/stateless-application/guestbook/)
 
+## Usage
+
+This repository is configured with support for [GitPod](https://gitpod.io) for easy development.
+
+Local application commands:
+
+```console
+go build -o app # to build the app
+
+go test # to run the tests
+
+./app # to run the app (if not already running)
+```
+
+Docker commands:
+
+```console
+docker run --interactive --tty --rm \
+  --publish 5003:5003 \
+  public.ecr.aws/poc-hello-world/namer-service:latest
+```
+
+Endpoints exposed by the application:
+
+```console
+# curl -v http://localhost:5003
+  *   Trying ::1...
+  * TCP_NODELAY set
+  * Connected to localhost (::1) port 5003 (#0)
+  > GET / HTTP/1.1
+  > Host: localhost:5003
+  > User-Agent: curl/7.64.1
+  > Accept: */*
+  >
+  < HTTP/1.1 200 OK
+  < Access-Control-Allow-Headers: Accept, Accept-Language, Content-Type, X-Version, X-Reply-Service
+  < Access-Control-Allow-Methods: GET, OPTIONS
+  < Access-Control-Allow-Origin: *
+  < Content-Type: application/json
+  < X-Reply-Service: namer-service
+  < X-Version: dev
+  < Date: Thu, 1 Apr 1000 10:10:09 GMT
+  < Content-Length: 17
+  <
+  {"name":"world"}
+
+# curl -v http://localhost:5003/status/alive
+  *   Trying ::1...
+  * TCP_NODELAY set
+  * Connected to localhost (::1) port 5003 (#0)
+  > GET /status/alive HTTP/1.1
+  > Host: localhost:5003
+  > User-Agent: curl/7.64.1
+  > Accept: */*
+  >
+  < HTTP/1.1 200 OK
+  < Access-Control-Allow-Headers: Accept, Accept-Language, Content-Type, X-Version, X-Reply-Service
+  < Access-Control-Allow-Methods: GET, OPTIONS
+  < Access-Control-Allow-Origin: *
+  < Content-Type: application/json
+  < X-Reply-Service: namer-service
+  < X-Version: dev
+  < Date: Thu, 1 Apr 1000 10:10:10 GMT
+  < Content-Length: 38
+  <
+
+  {"status":"Namer service is alive"}
+
+# curl -v http://localhost:5003/status/heathy
+  *   Trying ::1...
+  * TCP_NODELAY set
+  * Connected to localhost (::1) port 5003 (#0)
+  > GET /status/healthy HTTP/1.1
+  > Host: localhost:5003
+  > User-Agent: curl/7.64.1
+  > Accept: */*
+  >
+  < HTTP/1.1 200 OK
+  < Access-Control-Allow-Headers: Accept, Accept-Language, Content-Type, X-Version, X-Reply-Service
+  < Access-Control-Allow-Methods: GET, OPTIONS
+  < Access-Control-Allow-Origin: *
+  < Content-Type: application/json
+  < X-Reply-Service: namer-service
+  < X-Version: dev
+  < Date: Thu, 1 Apr 1000 10:10:11 GMT
+  < Content-Length: 40
+  <
+
+  {"status":"Namer service is healthy"}
+```
+
 ## Configuration and forking
 
 This repository is fork-friendly!
