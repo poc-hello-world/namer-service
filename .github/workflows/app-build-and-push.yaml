@@ -106,7 +106,7 @@ jobs:
 
       - name: Set up Docker Buildx
         if: steps.job.outputs.is_needed == 'true'
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v1.3.0
 
       - name: Build and push to AWS ECR Private
         if: steps.job.outputs.is_needed == 'true'
@@ -211,7 +211,7 @@ jobs:
 
       - name: Set up Docker Buildx
         if: steps.job.outputs.is_needed == 'true'
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v1.3.0
 
       - name: Build and push to AWS ECR Public
         if: steps.job.outputs.is_needed == 'true'
@@ -290,7 +290,7 @@ jobs:
 
       - name: Set up Docker Buildx
         if: steps.job.outputs.is_needed == 'true'
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v1.3.0
 
       - name: Build the container image
         if: steps.job.outputs.is_needed == 'true'
