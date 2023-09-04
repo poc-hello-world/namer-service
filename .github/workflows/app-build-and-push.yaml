@@ -57,7 +57,7 @@ jobs:
 
       - name: Get the code
         if: steps.job.outputs.is_needed == 'true'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Bump the version based on PR labels
         if: github.ref == 'refs/heads/main' && steps.job.outputs.is_needed == 'true'
@@ -163,7 +163,7 @@ jobs:
 
       - name: Get the code
         if: steps.job.outputs.is_needed == 'true'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Bump the version based on PR labels
         if: github.ref == 'refs/heads/main' && steps.job.outputs.is_needed == 'true'
@@ -261,7 +261,7 @@ jobs:
 
       - name: Get the code
         if: steps.job.outputs.is_needed == 'true'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Bump the version based on PR labels
         if: github.ref == 'refs/heads/main' && steps.job.outputs.is_needed == 'true'
