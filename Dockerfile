@@ -15,6 +15,6 @@ RUN go build \
 WORKDIR /dist
 RUN cp /build/namer ./namer
 
-FROM ubuntu:focal-20231003 AS app
+FROM ubuntu:focal-20231128 AS app
 COPY --from=builder /dist/namer /namer
 ENTRYPOINT ["/namer"]
