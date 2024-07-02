@@ -1,4 +1,4 @@
-FROM golang:1.22.2 AS builder
+FROM golang:1.22.4 AS builder
 
 WORKDIR /build
 
@@ -15,6 +15,6 @@ RUN go build \
 WORKDIR /dist
 RUN cp /build/namer ./namer
 
-FROM ubuntu:focal-20240410 AS app
+FROM ubuntu:focal-20240530 AS app
 COPY --from=builder /dist/namer /namer
 ENTRYPOINT ["/namer"]
